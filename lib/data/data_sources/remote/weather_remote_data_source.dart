@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:pretty_http_logger/pretty_http_logger.dart';
+import 'package:http/http.dart' as http;
 import 'package:weather/core/constants/weather_params.dart';
 import 'package:weather/core/errors/exceptions.dart';
 import 'package:weather/data/models/weather_model.dart';
@@ -10,7 +10,7 @@ abstract class WeatherRemoteDataSource {
 }
 
 class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
-  HttpClientWithMiddleware httpClient;
+  http.Client httpClient;
 
   WeatherRemoteDataSourceImpl({required this.httpClient});
 
@@ -20,8 +20,8 @@ class WeatherRemoteDataSourceImpl implements WeatherRemoteDataSource {
     String baseUrl = 'api.openweathermap.org';
 
     Uri url = Uri.https(baseUrl, '/data/2.5/forecast', {
-      'lat': '54.104142',
-      'lon': '12.174403',
+      'lat': '49.057187', // '54.104142',
+      'lon': '8.471033', //'12.174403',
       'units': WeatherParams.units,
       'appid': passKey,
     });

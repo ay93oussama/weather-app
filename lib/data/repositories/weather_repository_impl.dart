@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:weather/core/errors/exceptions.dart';
 import 'package:weather/core/errors/failures.dart';
 import 'package:weather/core/network/network_info.dart';
 import 'package:weather/data/data_sources/remote/weather_remote_data_source.dart';
@@ -21,8 +22,12 @@ class WeatherRepositoryImpl implements WeatherRepository {
       try {
         final response = await remoteDataSource.getWeather();
         return Right(response);
+      } on ServerException {
+        return Left(ServerFailure());
       } on Failure catch (failure) {
         return Left(failure);
+      } catch (_) {
+        return Left(ExceptionFailure());
       }
     } else {
       return Left(NetworkFailure());

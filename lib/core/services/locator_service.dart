@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:http/http.dart' as http;
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:pretty_http_logger/pretty_http_logger.dart';
 import 'package:weather/data/data_sources/remote/weather_remote_data_source.dart';
@@ -34,6 +35,10 @@ Future<void> init() async {
 
   ///! External
 
-  sl.registerLazySingleton(() => HttpClientWithMiddleware.build(middlewares: [HttpLogger(logLevel: LogLevel.BASIC)]));
+  sl.registerLazySingleton<http.Client>(
+    () => HttpClientWithMiddleware.build(
+      middlewares: [HttpLogger(logLevel: LogLevel.BASIC)],
+    ),
+  );
   sl.registerLazySingleton(() => InternetConnection());
 }

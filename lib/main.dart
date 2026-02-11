@@ -5,6 +5,7 @@ import 'package:weather/core/theme/app_theme.dart';
 import 'package:weather/presentation/states/cubits/wether_cubit.dart';
 
 import 'core/services/locator_service.dart' as di;
+import 'presentation/states/cubits/wether_cubit.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

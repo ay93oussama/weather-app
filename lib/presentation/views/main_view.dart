@@ -49,11 +49,14 @@ class _MainViewState extends State<MainView> {
           builder: (context, state) {
             if (state is WeatherLoadingState) {
               return const LoadingWidget();
-            } else if (state is WeatherLoadedState) {
+            }
+            else if (state is WeatherLoadedState) {
               return _buildBody(state);
-            } else if (state is WeatherErrorState) {
+            }
+            else if (state is WeatherErrorState) {
               return ErrorMsgWidget(msg: state.message);
-            } else {
+            }
+            else {
               return const SizedBox.shrink();
             }
           },
@@ -70,14 +73,14 @@ class _MainViewState extends State<MainView> {
           Row(
             children: [
               Text(
-                'Rostock',
+                'Stutensee',
                 style: TextStyle(
                   color: UIColors.white,
                   height: 1,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Gap(3),
+              const Gap(3),
               FaIcon(
                 FontAwesomeIcons.locationArrow,
                 size: 16,
